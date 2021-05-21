@@ -46,4 +46,25 @@ export class LogService {
   setFormLog(log: Log) {
     this.logSource.next(log);
   }
+
+  addLog(log: Log) {
+    this.logs.unshift(log); //to put in the begining and not in th end of the array.
+  }
+
+  updateLog(log: Log) {
+    this.logs.forEach((currentLog, index) => {
+      if (log.id == currentLog.id) {
+        this.logs.splice(index, 1);
+      }
+    });
+    this.logs.unshift(log);
+  }
+
+  deleteLog(log: Log) {
+    this.logs.forEach((currentLog, index) => {
+      if (log.id == currentLog.id) {
+        this.logs.splice(index, 1);
+      }
+    });
+  }
 }
