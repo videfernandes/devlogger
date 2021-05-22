@@ -1,6 +1,7 @@
 import { LogService } from './../../services/log.service';
 import { Component, OnInit } from '@angular/core';
 import { Log } from 'src/app/models/Log';
+import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-log-form',
@@ -50,6 +51,17 @@ export class LogFormComponent implements OnInit {
       };
       this.logService.updateLog(updLog);
     }
+
+    //clear state
+    this.clearState();
+  }
+
+  clearState() {
+    this.isNew = true;
+    this.id = '';
+    this.text = '';
+    this.date = '';
+    this.logService.clearState();
   }
 
   generateId() {
